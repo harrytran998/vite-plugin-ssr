@@ -30,7 +30,10 @@ function logErrorWithVite(err: unknown): void {
 
   const { viteDevServer } = getGlobalContext()
   if (viteDevServer) {
-    if (viteDevServer.config.logger.hasErrorLogged(err as Error)) {
+    console.log('err', err)
+    const res = viteDevServer.config.logger.hasErrorLogged(err as Error)
+    console.log('hasErrorLogged(err)', res)
+    if (res) {
       return
     }
     if (hasProp(err, 'stack')) {
