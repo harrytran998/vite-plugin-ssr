@@ -24,8 +24,6 @@ async function getPageFilesExports(): Promise<Record<string, unknown>> {
   return result.moduleExports
 }
 
-console.log('step 1')
-
 async function transpileaAndLoadModule(
   moduleId: string,
   viteDevServer: ViteDevServer
@@ -40,13 +38,9 @@ async function transpileaAndLoadModule(
   viteDevServer.config.logger.error = () => {}
 
   let result: Record<string, unknown>
-  console.log('step 2')
   try {
     result = await viteDevServer.ssrLoadModule(moduleId)
-    console.log('step 3')
   } catch (err) {
-    console.log('step 4')
-    console.log('err', err)
     if (isTranspileError(err)) {
       return { transpileError: err }
     }
